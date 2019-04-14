@@ -6,13 +6,12 @@ import (
 	"reflect"
 
 	"github.com/ChrisTrenkamp/goxpath/tree"
-	"github.com/ChrisTrenkamp/goxpath/treeimpl/xmltree/xmlnode"
 )
 
 type XMLNode struct {
 	Val      reflect.Value
 	pos      int
-	prnt     xmlnode.Elem
+	prnt     tree.Elem
 	nodeType tree.NodeType
 	prntTag  string
 }
@@ -39,7 +38,7 @@ func (x *XMLNode) GetToken() xml.Token {
 	return xml.Comment(x.ResValue())
 }
 
-func (x *XMLNode) GetParent() xmlnode.Elem {
+func (x *XMLNode) GetParent() tree.Elem {
 	return x.prnt
 }
 
