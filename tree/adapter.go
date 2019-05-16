@@ -72,7 +72,7 @@ type Adapter interface {
 
 	// NewNodeSet must return a new nodeset implementation containing the given nodes
 	NewNodeSet([]interface{}) NodeSet
-	// StringValue must return the string value of the nodeq
+	// StringValue must return the string value of the node
 	StringValue(interface{}) string
 }
 
