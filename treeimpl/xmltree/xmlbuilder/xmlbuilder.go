@@ -3,8 +3,8 @@ package xmlbuilder
 import (
 	"encoding/xml"
 
-	"github.com/ChrisTrenkamp/goxpath/tree"
-	"github.com/ChrisTrenkamp/goxpath/treeimpl/xmltree/xmlnode"
+	"github.com/bserdar/goxpath/tree"
+	"github.com/bserdar/goxpath/treeimpl/xmltree/xmlnode"
 )
 
 //BuilderOpts supplies all the information needed to create an XML node.

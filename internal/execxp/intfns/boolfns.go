@@ -3,7 +3,7 @@ package intfns
 import (
 	"fmt"
 
-	"github.com/ChrisTrenkamp/goxpath/tree"
+	"github.com/bserdar/goxpath/tree"
 	"golang.org/x/text/language"
 )
 

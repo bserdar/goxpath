@@ -3,7 +3,7 @@ package intfns
 import (
 	"encoding/xml"
 
-	"github.com/ChrisTrenkamp/goxpath/tree"
+	"github.com/bserdar/goxpath/tree"
 )
 
 //BuiltIn contains the list of built-in XPath functions

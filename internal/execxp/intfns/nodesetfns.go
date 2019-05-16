@@ -3,7 +3,7 @@ package intfns
 import (
 	"fmt"
 
-	"github.com/ChrisTrenkamp/goxpath/tree"
+	"github.com/bserdar/goxpath/tree"
 )
 
 func last(a tree.Adapter, c tree.Ctx, args ...tree.Result) (tree.Result, error) {

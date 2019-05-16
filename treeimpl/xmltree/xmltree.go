@@ -7,10 +7,10 @@ import (
 
 	"golang.org/x/net/html/charset"
 
-	"github.com/ChrisTrenkamp/goxpath/tree"
-	"github.com/ChrisTrenkamp/goxpath/treeimpl/xmltree/xmlbuilder"
-	"github.com/ChrisTrenkamp/goxpath/treeimpl/xmltree/xmlele"
-	"github.com/ChrisTrenkamp/goxpath/treeimpl/xmltree/xmlnode"
+	"github.com/bserdar/goxpath/tree"
+	"github.com/bserdar/goxpath/treeimpl/xmltree/xmlbuilder"
+	"github.com/bserdar/goxpath/treeimpl/xmltree/xmlele"
+	"github.com/bserdar/goxpath/treeimpl/xmltree/xmlnode"
 )
 
 //ParseOptions is a set of methods and function pointers that alter
@@ -198,48 +198,60 @@ func FindNodeByPos(n xmlnode.Node, pos int) xmlnode.Node {
 	return nil
 }
 
+// Adapter specific to the xmltree structure
 type Adapter struct{}
 
+// GetNodeType returns the node type from the xmlnode
 func (a Adapter) GetNodeType(in interface{}) tree.NodeType {
 	return in.(xmlnode.Node).GetNodeType()
 }
 
+// GetParent returns the parent of the node
 func (a Adapter) GetParent(in interface{}) interface{} {
 	return in.(xmlnode.Node).GetParent()
 }
 
+// GetAttrTok returns an attribute token for the input. It must be an attribute.
 func (a Adapter) GetAttrTok(in interface{}) xml.Attr {
 	return in.(xmlnode.Node).GetToken().(xml.Attr)
 }
 
+// GetNamespaceTok returns a namespace attribute
 func (a Adapter) GetNamespaceTok(in interface{}) xml.Attr {
 	return in.(xmlnode.Node).GetToken().(xml.Attr)
 }
 
+// GetElemTok returns an element token
 func (a Adapter) GetElemTok(in interface{}) xml.StartElement {
 	return in.(*xmlele.XMLEle).GetToken().(xml.StartElement)
 }
 
+// GetElementName returns the element name
 func (a Adapter) GetElementName(in interface{}) xml.Name {
 	return in.(*xmlele.XMLEle).GetToken().(xml.StartElement).Name
 }
 
+// GetProcInstTok returns the proc inst token
 func (a Adapter) GetProcInstTok(in interface{}) xml.ProcInst {
 	return in.(xmlnode.Node).GetToken().(xml.ProcInst)
 }
 
+// GetCharDataTok returns chardata
 func (a Adapter) GetCharDataTok(in interface{}) xml.CharData {
 	return in.(xmlnode.Node).GetToken().(xml.CharData)
 }
 
+// GetCommentTok returns comment
 func (a Adapter) GetCommentTok(in interface{}) xml.Comment {
 	return in.(xmlnode.Node).GetToken().(xml.Comment)
 }
 
+// NodePos returns the node position. This must be a unique integer
 func (a Adapter) NodePos(in interface{}) int {
 	return in.(xmlnode.Node).Pos()
 }
 
+// ForEachAttr iterates all attributes of the element
 func (a Adapter) ForEachAttr(in interface{}, f func(xml.Attr, interface{})) {
 	if ele, ok := in.(*xmlele.XMLEle); ok {
 		for _, attr := range ele.Attrs {
@@ -249,6 +261,7 @@ func (a Adapter) ForEachAttr(in interface{}, f func(xml.Attr, interface{})) {
 	}
 }
 
+// ForEachChild iterates all immediate children of the element
 func (a Adapter) ForEachChild(in interface{}, g func(interface{})) {
 	if ele, ok := in.(*xmlele.XMLEle); ok {
 		for _, ch := range ele.Children {
@@ -257,10 +270,12 @@ func (a Adapter) ForEachChild(in interface{}, g func(interface{})) {
 	}
 }
 
+// StringValue returns string value of the node
 func (a Adapter) StringValue(in interface{}) string {
 	return in.(xmlnode.Node).ResValue()
 }
 
+// GetNamespaces returns namespaces
 func (a Adapter) GetNamespaces(in interface{}) []interface{} {
 	if ele, ok := in.(*xmlele.XMLEle); ok {
 		ns := xmlele.BuildNS(ele)
@@ -278,10 +293,12 @@ type _nodeset struct {
 	adapter Adapter
 }
 
+// NewNodeSet returns a new nodeset with the given nodes
 func (a Adapter) NewNodeSet(nodes []interface{}) tree.NodeSet {
 	return &_nodeset{nodes: nodes, adapter: a}
 }
 
+// GetNodes returns the nodes of the nodeset
 func (n _nodeset) GetNodes() []interface{} {
 	return n.nodes
 }

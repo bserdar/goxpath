@@ -3,7 +3,7 @@ package xmlnode
 import (
 	"encoding/xml"
 
-	"github.com/ChrisTrenkamp/goxpath/tree"
+	"github.com/bserdar/goxpath/tree"
 )
 
 //Node is a XPath result that is a node except elements
@@ -43,8 +43,10 @@ type XMLNode struct {
 	Position int
 }
 
+// Pos returns node position
 func (a XMLNode) Pos() int { return a.Position }
 
+// GetNodeType returns the node type
 func (a XMLNode) GetNodeType() tree.NodeType { return a.NodeType }
 
 //GetToken returns the xml.Token representation of the node

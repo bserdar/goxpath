@@ -4,9 +4,9 @@ import (
 	"encoding/xml"
 	"sort"
 
-	"github.com/ChrisTrenkamp/goxpath/tree"
-	"github.com/ChrisTrenkamp/goxpath/treeimpl/xmltree/xmlbuilder"
-	"github.com/ChrisTrenkamp/goxpath/treeimpl/xmltree/xmlnode"
+	"github.com/bserdar/goxpath/tree"
+	"github.com/bserdar/goxpath/treeimpl/xmltree/xmlbuilder"
+	"github.com/bserdar/goxpath/treeimpl/xmltree/xmlnode"
 )
 
 //NSBuilder is a helper-struct for satisfying the NSElem interface
@@ -31,6 +31,7 @@ type XMLEle struct {
 	Position int
 }
 
+// GetNodeType returns the node type
 func (x XMLEle) GetNodeType() tree.NodeType { return x.NodeType }
 
 //Root is the default root node builder for xmltree.ParseXML
@@ -38,6 +39,7 @@ func Root() xmlbuilder.XMLBuilder {
 	return &XMLEle{NodeType: tree.NtRoot}
 }
 
+// Pos returns the node position
 func (x *XMLEle) Pos() int { return x.Position }
 
 //CreateNode is an implementation of xmlbuilder.XMLBuilder.  It appends the node
@@ -183,8 +185,10 @@ type NS struct {
 	tree.NodeType
 }
 
+// GetNodeType returns the node type
 func (ns NS) GetNodeType() tree.NodeType { return ns.NodeType }
 
+// Pos returns the node position
 func (ns NS) Pos() int { return ns.Position }
 
 //GetToken returns the xml.Token representation of the namespace.

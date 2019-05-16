@@ -6,8 +6,8 @@ import (
 	"runtime/debug"
 	"testing"
 
-	"github.com/ChrisTrenkamp/goxpath/tree"
-	"github.com/ChrisTrenkamp/goxpath/treeimpl/xmltree"
+	"github.com/bserdar/goxpath/tree"
+	"github.com/bserdar/goxpath/treeimpl/xmltree"
 )
 
 func execPath(xp, x string, exp []string, ns map[string]string, t *testing.T) {

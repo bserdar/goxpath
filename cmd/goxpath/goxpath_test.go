@@ -25,7 +25,7 @@ func setup(in string, args ...string) (*bytes.Buffer, *bytes.Buffer) {
 func TestStdinVal(t *testing.T) {
 	out, _ := setup(xml.Header+"<root><tag>test</tag></root>", "-v", "/root/tag")
 	if out.String() != "test\n" {
-		t.Error("Expecting 'test' for the result.  Recieved: ", out.String())
+		t.Error("Expecting 'test' for the result.  Received: ", out.String())
 	}
 	if retCode != 0 {
 		t.Error("Incorrect return value")
@@ -35,7 +35,7 @@ func TestStdinVal(t *testing.T) {
 func TestStdinNonVal(t *testing.T) {
 	out, _ := setup(xml.Header+"<root><tag>test</tag></root>", "/root/tag")
 	if out.String() != "<tag>test</tag>\n" {
-		t.Error("Expecting '<tag>test</tag>' for the result.  Recieved: ", out.String())
+		t.Error("Expecting '<tag>test</tag>' for the result.  Received: ", out.String())
 	}
 	if retCode != 0 {
 		t.Error("Incorrect return value")
@@ -45,7 +45,7 @@ func TestStdinNonVal(t *testing.T) {
 func TestFile(t *testing.T) {
 	out, _ := setup("", "-ns", "foo=http://foo.bar", "/foo:test/foo:path", "test/1.xml")
 	if out.String() != `<path xmlns="http://foo.bar">path</path>`+"\n" {
-		t.Error(`Expecting '<path xmlns="http://foo.bar">path</path>' for the result.  Recieved: `, out.String())
+		t.Error(`Expecting '<path xmlns="http://foo.bar">path</path>' for the result.  Received: `, out.String())
 	}
 	if retCode != 0 {
 		t.Error("Incorrect return value")
@@ -56,7 +56,7 @@ func TestDir(t *testing.T) {
 	out, _ := setup("", "-r", "/foo", "test/subdir")
 	val := strings.Replace(out.String(), "test\\subdir\\", "test/subdir/", -1)
 	if val != `test/subdir/2.xml:<foo>bar</foo>`+"\n"+`test/subdir/3.xml:<foo>bar2</foo>`+"\n" {
-		t.Error(`Incorrect result.  Recieved: `, val)
+		t.Error(`Incorrect result.  Received: `, val)
 	}
 	if retCode != 0 {
 		t.Error("Incorrect return value")
@@ -67,7 +67,7 @@ func TestDirNonRec(t *testing.T) {
 	_, err := setup("", "/foo", "test/subdir")
 	val := strings.Replace(err.String(), "test\\subdir\\", "test/subdir/", -1)
 	if val != `test/subdir: Is a directory`+"\n" {
-		t.Error(`Incorrect result.  Recieved: `, val)
+		t.Error(`Incorrect result.  Received: `, val)
 	}
 	if retCode != 1 {
 		t.Error("Incorrect return value")
@@ -137,7 +137,7 @@ func TestInvalidXML(t *testing.T) {
 func TestVarRef(t *testing.T) {
 	out, _ := setup(xml.Header+"<root><tag>test</tag></root>", "-var=foo=test", "/root/tag = $foo")
 	if out.String() != "true\n" {
-		t.Error("Expecting 'true' for the result.  Recieved: ", out.String())
+		t.Error("Expecting 'true' for the result.  Received: ", out.String())
 	}
 	if retCode != 0 {
 		t.Error("Incorrect return value")

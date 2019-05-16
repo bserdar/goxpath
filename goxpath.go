@@ -4,9 +4,9 @@ import (
 	"encoding/xml"
 	"fmt"
 
-	"github.com/ChrisTrenkamp/goxpath/internal/execxp"
-	"github.com/ChrisTrenkamp/goxpath/parser"
-	"github.com/ChrisTrenkamp/goxpath/tree"
+	"github.com/bserdar/goxpath/internal/execxp"
+	"github.com/bserdar/goxpath/parser"
+	"github.com/bserdar/goxpath/tree"
 )
 
 //Opts defines namespace mappings and custom functions for XPath expressions.

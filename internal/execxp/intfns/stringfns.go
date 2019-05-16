@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/ChrisTrenkamp/goxpath/tree"
+	"github.com/bserdar/goxpath/tree"
 )
 
 func _string(a tree.Adapter, c tree.Ctx, args ...tree.Result) (tree.Result, error) {

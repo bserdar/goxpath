@@ -3,8 +3,8 @@ package execxp
 import (
 	"encoding/xml"
 
-	"github.com/ChrisTrenkamp/goxpath/parser"
-	"github.com/ChrisTrenkamp/goxpath/tree"
+	"github.com/bserdar/goxpath/parser"
+	"github.com/bserdar/goxpath/tree"
 )
 
 //Exec executes the XPath expression, xp, against the tree, t, with the
